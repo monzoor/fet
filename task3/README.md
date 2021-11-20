@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# Simple video player
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with Create React App
 
-## Available Scripts
+### Pseudocode
 
-In the project directory, you can run:
+```
+IF video is not initialized
+   print ("Loading")
+ELSE
+   print ("Video screen")
+   Print ("Video controller. play/pause, forward, rewind buttons")
 
-### `yarn start`
+   Get HTMLMediaElement of that video. Which contains the information of that video.
+   media: HTMLMediaElement
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+   IF CLICK on play/pause BUTTON
+      IF media.paused
+         media.play()
+      ELSE media.pause()
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+  INTERVAL : how many seconds the video will forward or rewind
 
-### `yarn test`
+   IF CLICK on forward BUTTON
+      IF media.currentTime is GRETTER than or EQUAL of media.duration MINUS INTERVAL
+          IF NOT media.paused
+             media.pause()
+          ELSE media.play()
+      ELSE
+          PLUS INTERVAL with media.currentTime
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   IF CLICK on rewind BUTTON
+      IF media.currentTime is LESS than or EQUAL of INTERVAL
+          IF NOT media.paused
+             media.pause()
+          ELSE media.play()
+      ELSE
+          MINUS INTERVAL with media.currentTime
+```
 
-### `yarn build`
+### How to run:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+go to task 3 project directory
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+`yarn`
+`yarn start`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+To run the test
+`yarn test`
