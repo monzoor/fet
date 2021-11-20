@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+
+import { videoForward, videoBackward } from "utils/controller";
 import ControllerStyle from "./Controller.module.scss";
 
 const Controller = ({ video }) => {
@@ -9,32 +11,27 @@ const Controller = ({ video }) => {
     isPlaying ? media.play() : !media.paused && media.pause();
   }, [isPlaying, media]);
 
-  const videoPlayPause = () => {
-    setIsPlaying(!isPlaying);
+  const videoPlayPause = ({ value }) => {
+    setIsPlaying(value || !isPlaying);
   };
 
-  const interval = 1;
-
-  const videoForward = () => {
-    if (media.currentTime >= media.duration - interval) {
-      setIsPlaying(false);
-    } else {
-      media.currentTime += interval;
-    }
-  };
-
-  const videoBackward = () => {
-    if (media.currentTime <= interval) {
-      setIsPlaying(false);
-    } else {
-      media.currentTime -= interval;
-    }
-  };
   return (
     <div className={ControllerStyle.container}>
-      <button onClick={videoBackward}>Rewind</button>
-      <button onClick={videoPlayPause}>{isPlaying ? "Pause" : "Play"}</button>
-      <button onClick={videoForward}>Forward</button>
+      <button
+        data-testid="rewind"
+        onClick={() => videoBackward({ media, videoPlayPause })}
+      >
+        Rewind
+      </button>
+      <button data-testid="playPause" onClick={videoPlayPause}>
+        {isPlaying ? "Pause" : "Play"}
+      </button>
+      <button
+        data-testid="forward"
+        onClick={() => videoForward({ media, videoPlayPause })}
+      >
+        Forward
+      </button>
     </div>
   );
 };
